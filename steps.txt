@@ -1,0 +1,75 @@
+1. Install Django
+    $python3 -m pip install Django
+        test if installed
+
+2. Create Django project
+    $django-admin startproject <project name>
+        the project will have the <dir1>-><manage.py, dir2>-><__init__.py, settings.py, etc.>
+
+3. verify server can run
+    $python3 manage.py runserver
+        default port: 8000
+
+4. Create the polls app for easier directory making
+    $python3 manage.py startapp polls
+
+5. Write a sample view
+    cd polls/views.py   
+        from django.http import HttpResponse
+        def index(request):
+            return HttpResponse("Hello, world. You're at the polls index.")
+
+6. Create urls.py file in polls dir1
+
+7. Point the root urlconfig at the polls.urls module
+    project/urls.py add import django.urls.include
+    insert include() in the urlpatterns
+
+8.Activate model
+
+9. $python manage.py makemigrations <name>
+
+10 $python manage.py sqlmigrate <name> 0001
+    this will generate a db for postgresql
+
+11. Whenever changing models, update with both commans:
+    $python manage.py makemigration
+        $python manage.py migrate
+
+12. configuring API in shell
+    $python3 manage.py shell
+
+    from polls.models import Choice, Question  # Import the model classes we just wrote.
+
+    # No questions are in the system yet.
+    >>> Question.objects.all()
+    <QuerySet []>
+
+    # Create a new Question.
+    # Support for time zones is enabled in the default settings file, so
+    # Django expects a datetime with tzinfo for pub_date. Use timezone.now()
+    # instead of datetime.datetime.now() and it will do the right thing.
+    >>> from django.utils import timezone
+    >>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+    # Save the object into the database. You have to call save() explicitly.
+    >>> q.save()
+
+    # Now it has an ID.
+    >>> q.id
+    1
+
+    # Access model field values via Python attributes.
+    >>> q.question_text
+    "What's new?"
+    >>> q.pub_date
+    datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=datetime.timezone.utc)
+
+    # Change values by changing the attributes, then calling save().
+    >>> q.question_text = "What's up?"
+    >>> q.save()
+
+    # objects.all() displays all the questions in the database.
+    >>> Question.objects.all()
+    <QuerySet [<Question: Question object (1)>]>
+

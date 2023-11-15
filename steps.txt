@@ -1,3 +1,10 @@
+--VOCAB--
+
+Coupling
+    loose
+    controlled
+
+
 1. Install Django
     $python3 -m pip install Django
         test if installed

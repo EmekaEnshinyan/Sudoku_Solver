@@ -1,0 +1,9 @@
+{% if queued_question %}
+    <ul>
+        {%for q in queued_question%}
+        <li><a href="/polls/{{question.id}}/">{{question.quesiton_text}}
+        </a></li>
+        {%endfor%}
+    </ul>
+        {%else%}
+        <p>No polls are available</p>
